@@ -1,0 +1,57 @@
+<div>
+  <p-toolbar
+    [style]="{
+      'border-radius': '0rem',
+      'border-color': 'transparent',
+      'background-color': 'rgba(0, 0, 0, 0.3)'
+    }"
+  >
+    <ng-template pTemplate="start">
+      <img
+        [style]="{ 'max-width': '45px', width: 'auto' }"
+        src="../../../assets/film-icon_30381.webp"
+      />
+    </ng-template>
+    <ng-template pTemplate="center">
+      <p-button
+        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        label="Top Vistas"
+        [text]="true"
+      ></p-button>
+      <p-button
+        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        label="Top Votadas"
+        [text]="true"
+      ></p-button>
+      <p-button
+        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        label="Proximos estrenos"
+        [text]="true"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <!--<p-button [style]="{'color':'white','box-shadow':'none'}" icon="pi pi-user" [rounded]="true" [text]="true" size="large"></p-button>-->
+      <div class="dropdown" style="float: right">
+        <button class="dropbtn">
+          <i class="pi pi-user" [style]="{ 'font-size': '1rem' }"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">
+            <i class="pi pi-eye"></i>
+            Peliculas vistas
+          </a>
+
+          <a href="#">
+            <i class="pi pi-spin pi-spinner"></i>
+            Peliculas pendientes
+          </a>
+
+          <a href="#">
+            <i class="pi pi-sign-out"></i>
+            Log out
+        </a>
+        </div>
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>
