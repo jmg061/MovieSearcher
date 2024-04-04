@@ -35,21 +35,33 @@
         <button class="dropbtn">
           <i class="pi pi-user" [style]="{ 'font-size': '1rem' }"></i>
         </button>
-        <div class="dropdown-content">
-          <a href="#">
-            <i class="pi pi-spin pi-eye"></i>
-            Peliculas vistas
-          </a>
+          <div class="dropdown-content">
+            <a href="#">
+              <i class="pi pi-eye"></i>
+              Peliculas vistas
+            </a>
 
-          <a href="#">
-            <i class="pi pi-clock"></i>
-            Peliculas pendientes
-          </a>
+            <a href="#">
+              <i class="pi pi-clock"></i>
+              Peliculas pendientes
+            </a>
 
-          <a href="#">
-            <i class="pi pi-sign-out"></i>
-            Log out
-        </a>
+            <a href="#">
+              <i class="pi pi-sign-out"></i>
+              Cerrar sesion
+            </a>
+          </div>
+        <div class="NotLoged">
+          <p-button
+            [style]="{ color: 'white', 'box-shadow': 'none' }"
+            label="Registrarse"
+            [text]="true"
+          ></p-button>
+          <p-button
+            [style]="{ color: 'white', 'box-shadow': 'none' }"
+            label="Iniciar sesion"
+            [text]="true"
+          ></p-button>
         </div>
       </div>
     </ng-template>
