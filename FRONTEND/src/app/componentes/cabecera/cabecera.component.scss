@@ -67,3 +67,10 @@
     display: none;
 
   }
+
+  .centrarElementos{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 5px;
+  }
