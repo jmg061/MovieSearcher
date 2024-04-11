@@ -18,6 +18,13 @@
     //background-color: var(--bg-card);
     
     border-radius: 1rem;
+    transition: transform 0.3s ease;
+
+    user-select: none;
+  }
+
+.card:hover {
+    transform: scale(1.05);
   }
   
   .image_container {
