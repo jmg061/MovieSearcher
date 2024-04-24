@@ -1,4 +1,8 @@
 export interface pelicula {
-    nombre: string;
-    poster: string;
+    id: number;
+    titulo: string;
+    imagen: string;
+    descripcion: string;
+    fecha: string;
+    puntuacion: number;
 }
