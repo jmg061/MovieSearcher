@@ -20,6 +20,18 @@ export class PeliculasServiceService {
 
   }
 
+  getEstrenos(pagenumber: number) {
+
+    return this.http.request<mdbtemplate>('GET', 'https://api.themoviedb.org/3/movie/upcoming?language=es-ES&page=' + pagenumber, {headers: {Authorization: 'Bearer ' + this.token}});
+
+  }
+
+  getTopRated(pagenumber: number) {
+
+    return this.http.request<mdbtemplate>('GET', 'https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=' + pagenumber, {headers: {Authorization: 'Bearer ' + this.token}});
+
+  }
+
   getPeliculas(): Observable<pelicula[]> {
     return of(PELICULAS);
   }

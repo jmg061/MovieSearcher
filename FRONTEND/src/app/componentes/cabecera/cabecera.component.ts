@@ -4,11 +4,12 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cabecera',
   standalone: true,
-  imports: [CommonModule, ToolbarModule, MenubarModule, ButtonModule, DropdownModule],
+  imports: [CommonModule, ToolbarModule, MenubarModule, ButtonModule, DropdownModule, RouterLink],
   templateUrl: './cabecera.component.html',
   styleUrl: './cabecera.component.scss'
 })

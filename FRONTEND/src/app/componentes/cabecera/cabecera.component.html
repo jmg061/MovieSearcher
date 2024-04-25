@@ -14,19 +14,22 @@
     </ng-template>
     <ng-template pTemplate="center">
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px' }"
         label="Populares"
         [text]="true"
+        [routerLink]="['/populares']"
       ></p-button>
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px'}"
         label="Top Votadas"
         [text]="true"
+        [routerLink]="['/topvotadas']"
       ></p-button>
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none' }"
+        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px'}"
         label="Proximos estrenos"
         [text]="true"
+        [routerLink]="['/proximosestrenos']"
       ></p-button>
     </ng-template>
     <ng-template pTemplate="end">
@@ -38,21 +41,21 @@
         <div class="dropdown-content">
           <a href="#">
             <div class="centrarElementos">
-              <i class="pi pi-eye"></i>
+              <i class="pi pi-spin pi-eye"></i>
               Peliculas vistas
             </div>
           </a>
 
           <a href="#">
             <div class="centrarElementos">
-            <i class="pi pi-clock"></i>
+            <i class="pi pi-spin pi-clock"></i>
             Peliculas pendientes
             </div>
           </a>
 
           <a href="#">
             <div class="centrarElementos">
-            <i class="pi pi-sign-out"></i>
+            <i class="pi pi-spin pi-sign-out"></i>
             Cerrar sesion
           </div>
           </a>

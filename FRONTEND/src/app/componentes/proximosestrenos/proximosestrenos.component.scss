@@ -1,0 +1,21 @@
+.titulo {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: calc(100% / 5) calc(100% / 5) calc(100% / 5) calc(
+      100% / 5
+    ) calc(100% / 5);
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: right;
+}

@@ -1,3 +1,9 @@
-<div calss="container">
-<!--<app-card *ngFor="let pelicula of peliculas"></app-card>-->
+<div class="titulo">
+    <h1>Populares</h1>
+</div>
+<div class="container">
+<app-card *ngFor="let pelicula of peliculas" [peli]="pelicula"></app-card>
+</div>
+<div class="footer">
+    <p-paginator [style]="{'background-color':'transparent', 'color':'white'}" (onPageChange)="onPageChange($event)" [first]="1" [rows]="20" [totalRecords]="10000"></p-paginator>
 </div>

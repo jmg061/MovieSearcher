@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { CabeceraComponent } from '../cabecera/cabecera.component';
 import { pelicula } from '../../templates/pelicula';
-import { PELICULAS } from '../../mockups/peliculas';
 import { mdbtemplate } from '../../templates/mdbtemplate';
+import { peliculamdb } from '../../templates/peliculamdb';
 import { PeliculasServiceService } from '../../services/peliculas-service.service';
 import { CardComponent } from '../card/card.component';
-import { peliculamdb } from '../../templates/peliculamdb';
 import { CommonModule } from '@angular/common';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 @Component({
-  selector: 'app-popular',
+  selector: 'app-topvotadas',
   standalone: true,
-  imports: [CommonModule, CardComponent, PaginatorModule],
-  templateUrl: './popular.component.html',
-  styleUrl: './popular.component.scss',
+  imports: [CabeceraComponent, CommonModule, CardComponent, PaginatorModule],
+  templateUrl: './topvotadas.component.html',
+  styleUrl: './topvotadas.component.scss',
 })
-export class PopularComponent implements OnInit {
+export class TopvotadasComponent implements OnInit {
   constructor(private peliculasService: PeliculasServiceService) {}
 
   ngOnInit(): void {
@@ -23,15 +23,15 @@ export class PopularComponent implements OnInit {
   }
 
   peliculas!: pelicula[];
+  results: number = 0;
 
   cargarPeliculas(page: number) {
-    //console.log("CargarPeliculas: " + page);
-
     //console.log('PopularComponent.ngOnInit()');
-    this.peliculasService.getPopulares(page).subscribe({
+    this.peliculasService.getTopRated(page).subscribe({
       next: (data) => {
         //console.log('PopularComponent.ngOnInit().subscribe.next()');
         //console.log(data);
+        this.results = (data as mdbtemplate).total_results;
         this.peliculas = (data as mdbtemplate).results.map(
           (peliculamdb: peliculamdb) => {
             return {
@@ -46,12 +46,11 @@ export class PopularComponent implements OnInit {
             };
           }
         );
-        //console.log(this.peliculas[0].titulo);
         //console.log(this.peliculas);
       },
       error: (error) => {
         //console.log('PopularComponent.ngOnInit().subscribe.error()');
-        console.log(error);
+        //console.log(error);
       },
       complete: () => {
         //console.log('PopularComponent.ngOnInit().subscribe.complete()');

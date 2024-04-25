@@ -1,62 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { pelicula } from '../../templates/pelicula';
-import { PELICULAS } from '../../mockups/peliculas';
 import { mdbtemplate } from '../../templates/mdbtemplate';
-import { PeliculasServiceService } from '../../services/peliculas-service.service';
-import { CardComponent } from '../card/card.component';
 import { peliculamdb } from '../../templates/peliculamdb';
+import { PeliculasServiceService } from '../../services/peliculas-service.service';
 import { CommonModule } from '@angular/common';
+import { CardComponent } from '../card/card.component';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 @Component({
-  selector: 'app-popular',
+  selector: 'app-proximosestrenos',
   standalone: true,
   imports: [CommonModule, CardComponent, PaginatorModule],
-  templateUrl: './popular.component.html',
-  styleUrl: './popular.component.scss',
+  templateUrl: './proximosestrenos.component.html',
+  styleUrl: './proximosestrenos.component.scss'
 })
-export class PopularComponent implements OnInit {
-  constructor(private peliculasService: PeliculasServiceService) {}
+export class ProximosestrenosComponent implements OnInit{
+
+  constructor(private peliculasService: PeliculasServiceService) { }
 
   ngOnInit(): void {
+
     this.cargarPeliculas(1);
+    
   }
 
   peliculas!: pelicula[];
+  results: number = 0;
 
   cargarPeliculas(page: number) {
-    //console.log("CargarPeliculas: " + page);
 
     //console.log('PopularComponent.ngOnInit()');
-    this.peliculasService.getPopulares(page).subscribe({
+    this.peliculasService.getEstrenos(page).subscribe({
       next: (data) => {
         //console.log('PopularComponent.ngOnInit().subscribe.next()');
         //console.log(data);
-        this.peliculas = (data as mdbtemplate).results.map(
-          (peliculamdb: peliculamdb) => {
-            return {
-              id: peliculamdb.id,
-              titulo: peliculamdb.title,
-              imagen:
-                'https://image.tmdb.org/t/p/w500' + peliculamdb.poster_path,
-              descripcion: peliculamdb.overview,
-              fecha: peliculamdb.release_date,
-              puntuacion: peliculamdb.vote_average,
-              original_title: peliculamdb.original_title,
-            };
+        this.results = (data as mdbtemplate).total_results;
+        this.peliculas = (data as mdbtemplate).results.map((peliculamdb: peliculamdb) => {
+          return {
+            id: peliculamdb.id,
+            titulo: peliculamdb.title,
+            imagen: 'https://image.tmdb.org/t/p/w500' + peliculamdb.poster_path,
+            descripcion: peliculamdb.overview,
+            fecha: peliculamdb.release_date,
+            puntuacion: peliculamdb.vote_average,
+            original_title: peliculamdb.original_title
           }
-        );
-        //console.log(this.peliculas[0].titulo);
+        });
         //console.log(this.peliculas);
       },
       error: (error) => {
         //console.log('PopularComponent.ngOnInit().subscribe.error()');
-        console.log(error);
+        //console.log(error);
       },
       complete: () => {
         //console.log('PopularComponent.ngOnInit().subscribe.complete()');
-      },
+      }
+    
     });
+
   }
 
   onPageChange($event: PaginatorState) {
@@ -69,4 +71,7 @@ export class PopularComponent implements OnInit {
       behavior: 'smooth',
     });
   }
+
+
+
 }
