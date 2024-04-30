@@ -10,7 +10,7 @@ export class AppService {
 
   private user?: User;
 
-  setUser(user: User) {
+  setUser(user: User|undefined) {
     this.user = user;
   }
 

@@ -4,6 +4,7 @@
   [style]="{ width: '20vw' }"
   [modal]="true"
   [draggable]="false"
+  (onHide)="onHide()"
 >
   <ng-template pTemplate="header">
     <h1>Iniciar sesion</h1>
@@ -11,13 +12,15 @@
   <ng-template pTemplate="content">
     <p>Usuario</p>
     <input
+      type="text"
       pInputText
       [style]="{
         width: '100%',
         'box-shadow': 'none',
         'background-color': '#262D39',
-        color: 'white'
+        'color': 'white'
       }"
+      [(ngModel)]="usuario"
     />
     <p>Contraseña</p>
     <p-password
@@ -32,13 +35,14 @@
         color: 'white'
       }"
       [toggleMask]="true"
+      [(ngModel)]="password"
     >
     </p-password>
   </ng-template>
   <ng-template pTemplate="footer">
     <p-button
       class="boton"
-      
+      (onClick)="iniciarSesion()"
       label="Iniciar sesion"
     ></p-button>
     <!--[style]="{'background-color':'#48CFAD', 'box-shadow': 'none', 'width': '100%', 'border-color':'#48CFAD'}"-->
@@ -50,6 +54,7 @@
   [style]="{width: '20vw'}"
   [modal]="true"
   [draggable]="false"
+  (onHide)="onHide()"
 >
   <ng-template pTemplate="header">
     <h1>Registro</h1>
@@ -159,21 +164,21 @@
             </div>
           </a>
 
-          <a *ngIf="user != undefined" href="#">
+          <a *ngIf="user != undefined" [routerLink]="['/proximosestrenos']">
             <div class="centrarElementos">
               <i class="pi pi-spin pi-eye"></i>
               Peliculas vistas
             </div>
           </a>
 
-          <a *ngIf="user != undefined" href="#">
+          <a *ngIf="user != undefined" [routerLink]="['/proximosestrenos']">
             <div class="centrarElementos">
               <i class="pi pi-spin pi-clock"></i>
               Peliculas pendientes
             </div>
           </a>
 
-          <a *ngIf="user != undefined" href="#">
+          <a *ngIf="user != undefined" (click)="logout()">
             <div class="centrarElementos">
               <i class="pi pi-spin pi-sign-out"></i>
               Cerrar sesion

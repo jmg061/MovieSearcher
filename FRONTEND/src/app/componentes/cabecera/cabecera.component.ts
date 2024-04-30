@@ -10,17 +10,17 @@ import { User } from '../../templates/user';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { FormsModule } from '@angular/forms';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cabecera',
   standalone: true,
-  imports: [CommonModule, ToolbarModule, MenubarModule, ButtonModule, DropdownModule, RouterLink, DialogModule, InputTextModule, PasswordModule],
+  imports: [CommonModule, ToolbarModule, MenubarModule, ButtonModule, DropdownModule, RouterLink, DialogModule, InputTextModule, PasswordModule, FormsModule],
   templateUrl: './cabecera.component.html',
   styleUrl: './cabecera.component.scss'
 })
-export class CabeceraComponent {
-
-
+export class CabeceraComponent{
 
   constructor(private appService: AppService) { }
 
@@ -28,6 +28,7 @@ export class CabeceraComponent {
     
   usuario: string = '';
   password: string = '';
+  rpassword: string = '';
    
   /**************/
 
@@ -62,5 +63,32 @@ export class CabeceraComponent {
     if(this.dialogInicioSesion)
       this.dialogInicioSesion = false;
     this.dialogRegistro = true;
+  }
+
+  iniciarSesion() {
+
+    if(this.usuario == '' || this.password == ''){
+      alert('Rellena los campos');
+      return;
+    }
+
+    if(this.usuario == 'admin' && this.password == 'admin'){
+      this.appService.setUser({user: this.usuario, password: this.password});
+      this.user = this.appService.getUser();
+      this.dialogInicioSesion = false;
+      this.usuario = '';
+      this.password = '';
+    }
+  }
+
+  logout() {
+    this.appService.setUser(undefined);
+    this.user = this.appService.getUser();
+  }
+
+  onHide() {
+    this.usuario = '';
+    this.password = '';
+    this.rpassword = '';
   }
 }
