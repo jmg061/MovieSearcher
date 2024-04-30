@@ -1,9 +1,10 @@
 .cabecera{
-    position: fixed;
+    position: sticky;
+    top: 0px;
     width: 100%;
     z-index: 1000;
 }
 
-.container{
+/*.container{
     margin-top: 77px;
-}
+}*/

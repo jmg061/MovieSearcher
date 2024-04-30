@@ -39,7 +39,10 @@
   //.dropdown-content a:hover {background-color: #262D39;}
   .dropdown-content a:hover {background-color: #111827;}
   .dropdown:hover .dropdown-content {display: block;}
-  .dropdown:hover .dropbtn {background-color: #48CFAD;}
+  .dropdown:hover .dropbtn {
+    background-color: #2c836d;
+    border: 1px solid #2c836d;
+  }
 
   a:link { 
     text-decoration: none; 
@@ -49,6 +52,7 @@
   } 
   a:hover { 
     text-decoration: none; 
+    cursor: pointer;
   } 
   a:active { 
     text-decoration: none; 
@@ -81,4 +85,63 @@
     width: 100%;
     z-index: 1000;
     
+  }
+
+  :host ::ng-deep .dialogInicioSesion .p-dialog-header {
+    color: white;
+    background-color: #262D39;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  :host ::ng-deep .dialogInicioSesion .p-dialog-content {
+    color: white;
+    background-color: #262D39;
+    padding-top: 0px;
+  }
+  :host ::ng-deep .dialogInicioSesion .p-dialog-footer {
+    color: white;
+    background-color: #262D39;
+  }
+
+  :host ::ng-deep .p-password .p-icon{
+    color: white;
+  }
+
+
+  :host ::ng-deep input:hover{
+    
+    border-color: #48CFAD;
+  
+  }
+
+  :host ::ng-deep input:focus{
+    
+    border-color: #48CFAD;
+  
+  }
+
+
+  :host ::ng-deep .p-password input:hover{
+    
+    border-color: #48CFAD;
+  
+  }
+
+  :host ::ng-deep .p-password input:focus{
+    
+    border-color: #48CFAD;
+  
+  }
+
+  :host ::ng-deep .p-dialog-footer button{
+    background-color: #48CFAD;
+    color: white;
+    border: 1px solid #48CFAD;
+    width: 100%;
+  }
+
+  :host ::ng-deep .p-dialog-footer button:hover{
+    background-color: #2c836d;
+    color: white;
+    border: 1px solid #2c836d;
   }

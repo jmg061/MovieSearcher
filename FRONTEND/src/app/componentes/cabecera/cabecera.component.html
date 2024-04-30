@@ -1,3 +1,109 @@
+<p-dialog
+  [styleClass]="true ? 'dialogInicioSesion' : ''"
+  [(visible)]="dialogInicioSesion"
+  [style]="{ width: '20vw' }"
+  [modal]="true"
+  [draggable]="false"
+>
+  <ng-template pTemplate="header">
+    <h1>Iniciar sesion</h1>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p>Usuario</p>
+    <input
+      pInputText
+      [style]="{
+        width: '100%',
+        'box-shadow': 'none',
+        'background-color': '#262D39',
+        color: 'white'
+      }"
+    />
+    <p>Contraseña</p>
+    <p-password
+      class="w-full"
+      [feedback]="false"
+      styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+      [style]="{ width: '100%' }"
+      [inputStyle]="{
+        width: '100%',
+        'box-shadow': 'none',
+        'background-color': '#262D39',
+        color: 'white'
+      }"
+      [toggleMask]="true"
+    >
+    </p-password>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      class="boton"
+      
+      label="Iniciar sesion"
+    ></p-button>
+    <!--[style]="{'background-color':'#48CFAD', 'box-shadow': 'none', 'width': '100%', 'border-color':'#48CFAD'}"-->
+  </ng-template>
+</p-dialog>
+<p-dialog
+  [styleClass]="true ? 'dialogInicioSesion' : ''"
+  [(visible)]="dialogRegistro"
+  [style]="{width: '20vw'}"
+  [modal]="true"
+  [draggable]="false"
+>
+  <ng-template pTemplate="header">
+    <h1>Registro</h1>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p>Usuario</p>
+    <input
+      pInputText
+      [style]="{
+        width: '100%',
+        'box-shadow': 'none',
+        'background-color': '#262D39',
+        color: 'white'
+      }"
+    />
+    <p>Contraseña</p>
+    <p-password
+      class="w-full"
+      [feedback]="false"
+      styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+      [style]="{ width: '100%' }"
+      [inputStyle]="{
+        width: '100%',
+        'box-shadow': 'none',
+        'background-color': '#262D39',
+        color: 'white'
+      }"
+      [toggleMask]="true"
+    >
+    </p-password>
+    <p>Repite la contraseña</p>
+    <p-password
+      class="w-full"
+      [feedback]="false"
+      styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+      [style]="{ width: '100%' }"
+      [inputStyle]="{
+        width: '100%',
+        'box-shadow': 'none',
+        'background-color': '#262D39',
+        color: 'white'
+      }"
+      [toggleMask]="true"
+    >
+    </p-password>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      
+      label="Registrarse"
+    ></p-button>
+    <!--[style]="{'background-color':'#48CFAD', 'box-shadow': 'none', 'width': '100%', 'border-color':'#48CFAD'}"-->
+  </ng-template>
+</p-dialog>
 <nav class="cabeceraCompleta">
   <p-toolbar
     [style]="{
@@ -8,25 +114,25 @@
   >
     <ng-template pTemplate="start">
       <img
-        [style]="{ 'max-width': '45px', width: 'auto'}"
+        [style]="{ 'max-width': '45px', width: 'auto' }"
         src="../../../assets/film-icon_30381.webp"
       />
     </ng-template>
     <ng-template pTemplate="center">
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px' }"
+        [style]="{ color: 'white', 'box-shadow': 'none', width: '200px' }"
         label="Populares"
         [text]="true"
         [routerLink]="['/populares']"
       ></p-button>
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px'}"
+        [style]="{ color: 'white', 'box-shadow': 'none', width: '200px' }"
         label="Top Votadas"
         [text]="true"
         [routerLink]="['/topvotadas']"
       ></p-button>
       <p-button
-        [style]="{ color: 'white', 'box-shadow': 'none', 'width': '200px'}"
+        [style]="{ color: 'white', 'box-shadow': 'none', width: '200px' }"
         label="Proximos estrenos"
         [text]="true"
         [routerLink]="['/proximosestrenos']"
@@ -36,28 +142,42 @@
       <!--<p-button [style]="{'color':'white','box-shadow':'none'}" icon="pi pi-user" [rounded]="true" [text]="true" size="large"></p-button>-->
       <div class="dropdown" style="float: right">
         <button class="dropbtn">
-          <i class="pi pi-user" [style]="{ 'font-size': '1rem' }"></i>
+          <i class="pi pi-spin pi-user" [style]="{ 'font-size': '1rem' }"></i>
         </button>
         <div class="dropdown-content">
-          <a href="#">
+          <a *ngIf="user == undefined" (click)="showIniciarSesionDialog()">
+            <div class="centrarElementos">
+              <i class="pi pi-spin pi-sign-in"></i>
+              Iniciar sesion
+            </div>
+          </a>
+
+          <a *ngIf="user == undefined" (click)="showRegistroDialog()">
+            <div class="centrarElementos">
+              <i class="pi pi-spin pi-user-plus"></i>
+              Registrarse
+            </div>
+          </a>
+
+          <a *ngIf="user != undefined" href="#">
             <div class="centrarElementos">
               <i class="pi pi-spin pi-eye"></i>
               Peliculas vistas
             </div>
           </a>
 
-          <a href="#">
+          <a *ngIf="user != undefined" href="#">
             <div class="centrarElementos">
-            <i class="pi pi-spin pi-clock"></i>
-            Peliculas pendientes
+              <i class="pi pi-spin pi-clock"></i>
+              Peliculas pendientes
             </div>
           </a>
 
-          <a href="#">
+          <a *ngIf="user != undefined" href="#">
             <div class="centrarElementos">
-            <i class="pi pi-spin pi-sign-out"></i>
-            Cerrar sesion
-          </div>
+              <i class="pi pi-spin pi-sign-out"></i>
+              Cerrar sesion
+            </div>
           </a>
         </div>
         <div class="NotLoged">

@@ -42,7 +42,7 @@ export class PopularComponent implements OnInit {
               descripcion: peliculamdb.overview,
               fecha: peliculamdb.release_date,
               puntuacion: peliculamdb.vote_average,
-              original_title: peliculamdb.original_title,
+              originaltitle: peliculamdb.original_title,
             };
           }
         );
