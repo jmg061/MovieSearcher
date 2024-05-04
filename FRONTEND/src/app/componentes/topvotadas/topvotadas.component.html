@@ -2,7 +2,7 @@
     <h1>Top Votadas</h1>
 </div>
 <div class="container">
-    <app-card *ngFor="let pelicula of peliculas" [peli]="pelicula"></app-card>
+    <app-card *ngFor="let pelicula of peliculas" [peli]="pelicula" class="separator"></app-card>
 </div>
 <div class="footer">
     <p-paginator [style]="{'background-color':'transparent', 'color':'white'}" (onPageChange)="onPageChange($event)" [first]="1" [rows]="20" [totalRecords]="results"></p-paginator>

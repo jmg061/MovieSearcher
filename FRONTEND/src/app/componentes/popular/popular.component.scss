@@ -19,10 +19,62 @@
     grid-template-columns: calc(100% / 5) calc(100% / 5) calc(100% / 5) calc(100% / 5) calc(100% / 5);
     justify-items: center;
     align-items: center;
-    margin-bottom: 20px;
+  }
+
+  .separator{
+    margin-bottom: 1rem;
   }
 
 .footer {
     display: flex;
     justify-content: right;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    color: black;
+    background-color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+    color: black;
+    background-color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first:hover {
+    color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first {
+    color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev:hover {
+    color: black;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev {
+    color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next:hover {
+    color: black;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next {
+    color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-last:hover {
+    color: black;;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-last {
+    color: white;
 }

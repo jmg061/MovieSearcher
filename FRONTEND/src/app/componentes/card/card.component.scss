@@ -49,7 +49,7 @@
     
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     border-radius: 0.5rem;
     
@@ -59,6 +59,7 @@
     overflow: clip;
 
     width: 100%;
+    height: 3.5rem;
 
     display: flex;
     justify-content: center;
@@ -69,4 +70,5 @@
     //text-transform: capitalize;
     text-overflow: ellipsis;
     text-align: center;
+    margin-top: 0.9rem;
   }
