@@ -4,6 +4,5 @@ export interface pelicula {
     imagen: string;
     descripcion: string;
     fecha: string;
-    puntuacion: number;
     originaltitle: string;
 }
