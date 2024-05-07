@@ -6,7 +6,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AppService } from '../../services/app.service';
-import { User } from '../../templates/user';
+import { User } from '../../templates/usuario';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -72,13 +72,53 @@ export class CabeceraComponent{
       return;
     }
 
-    if(this.usuario == 'admin' && this.password == 'admin'){
-      this.appService.setUser({user: this.usuario, password: this.password});
+    /*if(this.usuario == 'admin' && this.password == 'admin'){
+      this.appService.setUser({usuario: this.usuario, contrasenna: this.password});
       this.user = this.appService.getUser();
       this.dialogInicioSesion = false;
       this.usuario = '';
       this.password = '';
-    }
+    }*/
+    this.appService.inicioSesion(this.usuario, this.password).subscribe({
+        
+        next: (data) => {
+          this.appService.setUser(data as User);
+          this.user = this.appService.getUser();
+          this.dialogInicioSesion = false;
+          this.usuario = '';
+          this.password = '';
+        },
+        error: (error) => {
+          error.status == 404 ? alert('Usuario no registrado') : alert('Error al iniciar sesion');
+        },
+        complete: () => {
+          
+        }
+      });
+  }
+
+  registro() {
+    this.appService.registro({usuario: this.usuario, contrasenna: this.password}).subscribe({
+
+      next: (data) => {
+        if(data.id == -1){
+          alert('Usuario ya registrado');
+          return;
+        }
+        this.appService.setUser(data as User);
+        this.user = this.appService.getUser();
+        this.dialogRegistro = false;
+        this.usuario = '';
+        this.password = '';
+        this.rpassword = '';
+      },
+      error: (error) => {
+        alert('Error al registrar');
+      },
+      complete: () => {
+        
+      }
+    });
   }
 
   logout() {

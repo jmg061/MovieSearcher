@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { User } from '../templates/user';
+import { User } from '../templates/usuario';
 import { pelicula } from '../templates/pelicula';
+import { HttpClient } from '@angular/common/http';
+import { scrapping } from '../templates/scrapping';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private user?: User;
   private peli!: pelicula;
@@ -26,6 +28,22 @@ export class AppService {
 
   getPeli():pelicula {
     return this.peli;
+  }
+
+  logout() {
+    this.user = undefined;
+  }
+
+  registro(usuario: User){
+    return this.http.post<User>('http://localhost:8081/data/registro', usuario);
+  }
+
+  inicioSesion(usuario: string, contrasenna: string){
+    return this.http.get<User>('http://localhost:8081/data/user=' + usuario + '&pass=' + contrasenna);
+  }
+
+  getPuntuacion(id: number){
+    return this.http.get<scrapping>('http://localhost:8081/data/scrapping=' + id);
   }
 
 }

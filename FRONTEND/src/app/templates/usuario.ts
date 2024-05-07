@@ -3,8 +3,8 @@ import { pelicula } from "./pelicula";
 export interface User {
 
     id?: number;
-    user: string;
-    password: string;
+    usuario: string;
+    contrasenna: string;
     peliculasVistas?: pelicula[];
     peliculasPendientes?: pelicula[];
 

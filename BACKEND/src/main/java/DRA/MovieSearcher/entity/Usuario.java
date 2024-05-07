@@ -1,4 +1,4 @@
-package DRA.MovieSearcher.entity;
+package dra.moviesearcher.entity;
 
 import java.util.ArrayList;
 import java.util.List;

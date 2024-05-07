@@ -1,11 +1,22 @@
 <div class="container">
-    <div class="containerleft">
-        <div class="imagecontainer">
-            <img src={{peli.imagen}} />
-        </div>
+  <div class="containerleft">
+    <div class="imagecontainer">
+      <img src="{{ peli.imagen }}" />
     </div>
-    <div class="containerright">
-        <h1>{{peli.titulo}}</h1>
-        <p>{{peli.descripcion}}</p>
+    <div class="puntuacionesContainer">
+      <div class="puntuaciones">
+        <p>Puntuacion en Rotten Tomatoes</p>
+      </div>
+      <div class="puntuacion">
+        <p>Pagina: {{pagina}}</p>
+      </div>
+      <div class="puntuacion">
+        <p>Audiencia: {{audiencia}}</p>
+      </div>
     </div>
+  </div>
+  <div class="containerright">
+    <h1>{{ peli.titulo }}</h1>
+    <p>{{ peli.descripcion }}</p>
+  </div>
 </div>
