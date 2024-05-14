@@ -23,3 +23,52 @@
 .separator{
   margin-bottom: 1rem;
 }
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  color: black;
+  background-color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:hover {
+  color: black;
+  background-color: white;
+
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first:hover {
+  color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-first {
+  color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev:hover {
+  color: black;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev {
+  color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next:hover {
+  color: black;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next {
+  color: white;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-last:hover {
+  color: black;;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-last {
+  color: white;
+}
