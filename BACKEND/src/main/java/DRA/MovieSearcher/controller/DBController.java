@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dra.moviesearcher.entity.Pelicula;
 import dra.moviesearcher.entity.Usuario;
+import dra.moviesearcher.repository.PeliculaRepository;
 import dra.moviesearcher.repository.UsuarioRepository;
 import dra.moviesearcher.scrapping.Scrapping;
 import dra.moviesearcher.scrapping.ScrappingService;
@@ -36,9 +38,12 @@ public class DBController {
     private ScrappingService scrappingService;
 
     private final UsuarioRepository usuarioRepository;
+    private final PeliculaRepository peliculaRepository;
 
-    public DBController(UsuarioRepository usuarioRepository) {
+    public DBController(UsuarioRepository usuarioRepository,
+            PeliculaRepository peliculaRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.peliculaRepository = peliculaRepository;
     }
 
     @GetMapping("/AllUsers")
@@ -121,6 +126,23 @@ public class DBController {
         }
 
         return new ResponseEntity<Scrapping>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("updateUser")
+    public ResponseEntity<Boolean> updateUser(@RequestBody Usuario user) {
+        
+        for(Pelicula peli: user.getPeliculasPendientes()){
+            if(peliculaRepository.findById(peli.getId()).isPresent()){
+                continue;
+            }
+            peliculaRepository.save(peli);
+        }
+        Usuario usuario = this.usuarioRepository.save(user);
+        
+        if (usuario == null)
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok().body(true);
     }
 
 }

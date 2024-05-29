@@ -12,17 +12,33 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FormsModule } from '@angular/forms';
 import { OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cabecera',
   standalone: true,
   imports: [CommonModule, ToolbarModule, MenubarModule, ButtonModule, DropdownModule, RouterLink, DialogModule, InputTextModule, PasswordModule, FormsModule],
   templateUrl: './cabecera.component.html',
-  styleUrl: './cabecera.component.scss'
+  styleUrl: './cabecera.component.scss',
+  providers: [CookieService]
 })
-export class CabeceraComponent{
+export class CabeceraComponent implements OnInit{
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private cs: CookieService, private router: Router) { }
+
+  cambiar() {
+    this.appService.emitirCambio();
+  }
+
+  ngOnInit(): void {
+    //if(this.user == undefined)
+      //this.user = this.cs.get('user') ? JSON.parse(this.cs.get('user')) : undefined;
+    if(this.appService.getUser() == undefined && this.user != undefined){
+      this.appService.setUser(this.user);
+      this.user = this.appService.getUser();
+    }
+  }
 
   /**************Elementos Dialogos*/
     
@@ -92,7 +108,12 @@ export class CabeceraComponent{
           error.status == 404 ? alert('Usuario no registrado') : alert('Error al iniciar sesion');
         },
         complete: () => {
-          
+          //this.cs.set('user', JSON.stringify(this.user));
+          //if(this.appService.getPeli() != undefined)
+            //this.cs.set('peli', JSON.stringify(this.appService.getPeli()));
+          //window.location.reload();
+          //this.router.navigate([this.router.url]);
+          this.cambiar();
         }
       });
   }
@@ -116,14 +137,19 @@ export class CabeceraComponent{
         alert('Error al registrar');
       },
       complete: () => {
-        
+        //this.router.navigate([this.router.url]);
+        this.cambiar();
       }
     });
   }
 
   logout() {
     this.appService.setUser(undefined);
-    this.user = this.appService.getUser();
+    this.user = undefined;
+    //this.cs.delete('user');
+    //window.location.reload();
+    //this.router.navigate([this.router.url]);
+    this.cambiar();
   }
 
   onHide() {

@@ -3,9 +3,8 @@ package dra.moviesearcher.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -16,13 +15,13 @@ import jakarta.validation.constraints.NotBlank;
 public class Pelicula {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotBlank
     private String titulo;
     @NotBlank
     private String imagen;
     @NotBlank
+    @Column(length = 1000)
     private String descripcion;
     @NotBlank
     private String fecha;

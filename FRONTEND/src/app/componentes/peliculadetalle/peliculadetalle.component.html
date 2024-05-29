@@ -13,6 +13,26 @@
       <div class="puntuacion">
         <p>Audiencia: {{audiencia}}</p>
       </div>
+      <div *ngIf="this.usuario!=undefined">
+        <div class="puntuacion" *ngIf="!this.contenida">
+        <p-button
+              [style]="{ color: 'white', 'box-shadow': 'none', 'background-color': '#2c836d' }"
+              label="Vista"
+              icon="pi pi-eye"
+              [text]="true"
+              (onClick)="addPeliVista()"
+            ></p-button>
+          </div>
+          <div class="puntuacion" *ngIf="this.contenida">
+            <p-button
+                  [style]="{ color: 'white', 'box-shadow': 'none', 'background-color': '#2c836d' }"
+                  label="Pendiente"
+                  icon="pi pi-clock"
+                  [text]="true"
+                  (onClick)="deletePeliVista()"
+                ></p-button>
+              </div>
+          </div>
     </div>
   </div>
   <div class="containerright">

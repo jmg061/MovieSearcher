@@ -3,6 +3,7 @@ import { User } from '../templates/usuario';
 import { pelicula } from '../templates/pelicula';
 import { HttpClient } from '@angular/common/http';
 import { scrapping } from '../templates/scrapping';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,13 @@ export class AppService {
 
   private user?: User;
   private peli!: pelicula;
+
+  private cambioSource = new Subject<void>();
+  cambio$ = this.cambioSource.asObservable();
+
+  emitirCambio() {
+    this.cambioSource.next();
+  }
 
   setUser(user: User|undefined) {
     this.user = user;
@@ -44,6 +52,10 @@ export class AppService {
 
   getPuntuacion(id: number){
     return this.http.get<scrapping>('http://localhost:8081/data/scrapping=' + id);
+  }
+
+  updateUsuario(usuario: User){
+    return this.http.put<User>('http://localhost:8081/data/updateUser', usuario);
   }
 
 }
